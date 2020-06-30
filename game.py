@@ -25,35 +25,32 @@ porcoImg = pygame.image.load('imgs/porco.png')
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
-def mostraBaleia( x, y):
-    gamedisplay.blit(baleiaImg, (x,y) )
+    
+def imgEscolhida():
+    img = random.randrange(0, 10)
+    if img == 0:
+        gamedisplay.blit(porcoImg, (x,y) )
+    elif img == 1:
+        gamedisplay.blit(mulherImg, (x,y) )
+    elif img == 2:
+        gamedisplay.blit(macacoImg, (x,y) )
+    elif img == 3:
+        gamedisplay.blit(lagartoImg, (x,y) )
+    elif img == 4:
+        gamedisplay.blit(homemImg, (x,y) )
+    elif img == 5:
+        gamedisplay.blit(gatoImg, (x,y) )
+    elif img == 6:
+        gamedisplay.blit(galinhaImg, (x,y) )
+    elif img == 7:
+        gamedisplay.blit(cobraImg, (x,y) )
+    elif img == 8:
+        gamedisplay.blit(cachorroImg, (x,y) )
+    elif img == 9:
+        gamedisplay.blit(baleiaImg, (x,y) )
+    return img
 
-def mostraCachorro( x, y):
-    gamedisplay.blit(cachorroImg, (x,y) )
 
-def mostraCobra( x, y):
-    gamedisplay.blit(cobraImg, (x,y) )
-
-def mostraGalinha( x, y):
-    gamedisplay.blit(galinhaImg, (x,y) )
-
-def mostraGato( x, y):
-    gamedisplay.blit(gatoImg, (x,y) )
-
-def mostraHomem( x, y):
-    gamedisplay.blit(homemImg, (x,y) )
-
-def mostraLagarto( x, y):
-    gamedisplay.blit(lagartoImg, (x,y) )
-
-def mostraMacaco( x, y):
-    gamedisplay.blit(macacoImg, (x,y) )
-
-def mostraMulher( x, y):
-    gamedisplay.blit(mulherImg, (x,y) )
-
-def mostraPorco( x, y):
-    gamedisplay.blit(porcoImg, (x,y) )
 
 
 def text_objects(text,font):
