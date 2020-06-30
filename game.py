@@ -18,7 +18,10 @@ galinhaImg = pygame.image.load('imgs/galinha.png')
 gatoImg = pygame.image.load('imgs/gato.png')
 lagartoImg = pygame.image.load('imgs/lagarto.png')
 porcoImg = pygame.image.load('imgs/porco.png')
-background = pygame.image.load('imgs/zoo.png')
+background = pygame.image.load('imgs/zoo2.png')
+gameicon = pygame.image.load('imgs/icon.png')
+pygame.display.set_icon(gameicon)
+pygame.display.set_caption('Mamiferos')
 
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
@@ -32,12 +35,12 @@ def sorteioImagem():
 
 
 def text_objects(text,font):
-    textSurface = font.render(text, True, black)
-    return textSurface.get_rect()
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
 
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
-    TextSurf, TextRect = text_objects(text, largeText)
+    TextSurf, TextRect = text_objects(text,largeText)
     TextRect.center = ((larguraTela/2, alturaTela/2))
     gamedisplay.blit(TextSurf, TextRect)
     pygame.display.update()
@@ -62,6 +65,7 @@ def game_loop():
     ateimg = larguraTela - larguraImg
     posicaoImgX = random.randrange(0, ateimg)
     while True:
+        
         
         if sorteio == 0:
             img = sorteioImagem()
@@ -110,13 +114,19 @@ def game_loop():
         elif zooPosicaoX < 0:
                 zooPosicaoX = 0
 
+        if posicaoImgY > alturaTela:
+            if img == 0 or img == 2 or img == 3 or img == 5 or img == 6:
+                perdeu()
+            else:
+                sorteio = 0
+                posicaoImgY = 0 - alturaImg
+                posicaoImgX = random.randrange(0,ateimg)
+            
+
         pygame.display.update()
         clock.tick(60)
         
-        if posicaoImgY > alturaTela:
-            sorteio = 0
-            posicaoImgY = 0 - alturaImg
-            posicaoImgX = random.randrange(0,ateimg)
+        
 
 game_loop()
 
