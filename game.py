@@ -1,4 +1,5 @@
 import pygame
+import time
 
 pygame.init()
 
@@ -23,40 +24,57 @@ porcoImg = pygame.image.load('imgs/porco.png')
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
-zooPosicaoX = larguraTela /2 - 50
-zooPosicaoY = alturaTela - 150
-movimentoX = 0
-zooLargura = 150
-zooAltura = 150
 
+def text_objects(text,font):
+    textSurface = font.render(text, True, black)
+    return textSurface.get_rect()
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                movimentoX = -5
-            elif event.key == pygame.K_RIGHT:
-                movimentoX = 5
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                movimentoX = 0
-
-    zooPosicaoX = zooPosicaoX + movimentoX
-
-    gamedisplay.fill(white)
-    mostraZoo(zooPosicaoX,zooPosicaoY)
-
-    if zooPosicaoX > larguraTela - zooLargura:
-        zooPosicaoX = larguraTela-zooLargura
-    elif zooPosicaoX < 0:
-            zooPosicaoX = 0
-
+def message_display(text):
+    largeText = pygame.font.Font('freesansbold.ttf',115)
+    TextSurf, TextRect = text_objects(text, largeText)
+    gamedisplay.blit(TextSurf, TextRect)
     pygame.display.update()
-    clock.tick(60)
+    time.sleep(2)
+    game_loop()
+
+def perdeu():
+    message_display("Você perdeu!")
+
+def game_loop():
+    zooPosicaoX = larguraTela /2 - 50
+    zooPosicaoY = alturaTela - 150
+    movimentoX = 0
+    zooLargura = 150
+    zooAltura = 150
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    movimentoX = -5
+                elif event.key == pygame.K_RIGHT:
+                    movimentoX = 5
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    movimentoX = 0
+
+        zooPosicaoX = zooPosicaoX + movimentoX
+
+        gamedisplay.fill(white)
+        mostraZoo(zooPosicaoX,zooPosicaoY)
+
+        if zooPosicaoX > larguraTela - zooLargura:
+            zooPosicaoX = larguraTela-zooLargura
+        elif zooPosicaoX < 0:
+                zooPosicaoX = 0
+
+        pygame.display.update()
+        clock.tick(60)
+
+game_loop()
 
 
