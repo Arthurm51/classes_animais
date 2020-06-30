@@ -1,5 +1,6 @@
 import pygame
 import time
+import random
 
 pygame.init()
 
@@ -24,6 +25,36 @@ porcoImg = pygame.image.load('imgs/porco.png')
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
+def mostraBaleia( x, y):
+    gamedisplay.blit(baleiaImg, (x,y) )
+
+def mostraCachorro( x, y):
+    gamedisplay.blit(cachorroImg, (x,y) )
+
+def mostraCobra( x, y):
+    gamedisplay.blit(cobraImg, (x,y) )
+
+def mostraGalinha( x, y):
+    gamedisplay.blit(galinhaImg, (x,y) )
+
+def mostraGato( x, y):
+    gamedisplay.blit(gatoImg, (x,y) )
+
+def mostraHomem( x, y):
+    gamedisplay.blit(homemImg, (x,y) )
+
+def mostraLagarto( x, y):
+    gamedisplay.blit(lagartoImg, (x,y) )
+
+def mostraMacaco( x, y):
+    gamedisplay.blit(macacoImg, (x,y) )
+
+def mostraMulher( x, y):
+    gamedisplay.blit(mulherImg, (x,y) )
+
+def mostraPorco( x, y):
+    gamedisplay.blit(porcoImg, (x,y) )
+
 
 def text_objects(text,font):
     textSurface = font.render(text, True, black)
@@ -32,6 +63,7 @@ def text_objects(text,font):
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((larguraTela/2, alturaTela/2))
     gamedisplay.blit(TextSurf, TextRect)
     pygame.display.update()
     time.sleep(2)
