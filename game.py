@@ -56,7 +56,7 @@ def game_loop():
     movimentoX = 0
     zooLargura = 150
     zooAltura = 150
-    posicaoImgX = random.randrange(0, larguraTela)
+    posicaoImgX = random.randrange(0, larguraTela - 120)
     posicaoImgY = -100
     larguraImg = 120
     alturaImg = 80
