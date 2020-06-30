@@ -23,9 +23,12 @@ porcoImg = pygame.image.load('imgs/porco.png')
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
-zooPosicaoX = 350
-zooPosicaoY = 450
+zooPosicaoX = larguraTela /2 - 50
+zooPosicaoY = alturaTela - 150
 movimentoX = 0
+zooLargura = 150
+zooAltura = 150
+
 
 while True:
     for event in pygame.event.get():
@@ -47,6 +50,12 @@ while True:
 
     gamedisplay.fill(white)
     mostraZoo(zooPosicaoX,zooPosicaoY)
+
+    if zooPosicaoX > larguraTela - zooLargura:
+        zooPosicaoX = larguraTela-zooLargura
+    elif zooPosicaoX < 0:
+            zooPosicaoX = 0
+
     pygame.display.update()
     clock.tick(60)
 
