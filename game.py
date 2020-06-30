@@ -26,26 +26,8 @@ def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
     
-def imgEscolhida(x, y):
+def sorteioImagem():
     img = random.randrange(0, 8)
-    if img == 0:
-        gamedisplay.blit(porcoImg, (x,y) )
-    elif img == 1:
-        gamedisplay.blit(mulherImg, (x,y) )
-    elif img == 3:
-        gamedisplay.blit(lagartoImg, (x,y) )
-    elif img == 4:
-        gamedisplay.blit(homemImg, (x,y) )
-    elif img == 5:
-        gamedisplay.blit(gatoImg, (x,y) )
-    elif img == 6:
-        gamedisplay.blit(galinhaImg, (x,y) )
-    elif img == 7:
-        gamedisplay.blit(cobraImg, (x,y) )
-    elif img == 8:
-        gamedisplay.blit(cachorroImg, (x,y) )
-    elif img == 2:
-        gamedisplay.blit(baleiaImg, (x,y) )
     return img
 
 
@@ -68,6 +50,7 @@ def perdeu():
     message_display("Você perdeu!")
 
 def game_loop():
+    
     zooPosicaoX = larguraTela /2 - 50
     zooPosicaoY = alturaTela - 150
     movimentoX = 0
@@ -78,7 +61,14 @@ def game_loop():
     larguraImg = 120
     alturaImg = 80
     imgSpeed = 7
+    sorteio = 0
+
     while True:
+        
+        if sorteio == 0:
+            img = sorteioImagem()
+            sorteio = 1
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -98,8 +88,27 @@ def game_loop():
 
         gamedisplay.fill(white)
         mostraZoo(zooPosicaoX,zooPosicaoY)
-        imgEscolhida(posicaoImgX, posicaoImgY)
+        
+        if img == 0:
+            gamedisplay.blit(porcoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 1:
+            gamedisplay.blit(mulherImg, (posicaoImgX,posicaoImgY) )
+        elif img == 3:
+            gamedisplay.blit(lagartoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 4:
+            gamedisplay.blit(homemImg, (posicaoImgX,posicaoImgY) )
+        elif img == 5:
+            gamedisplay.blit(gatoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 6:
+            gamedisplay.blit(galinhaImg, (posicaoImgX,posicaoImgY) )
+        elif img == 7:
+            gamedisplay.blit(cobraImg, (posicaoImgX,posicaoImgY) )
+        elif img == 8:
+            gamedisplay.blit(cachorroImg, (posicaoImgX,posicaoImgY) )
+        elif img == 2:
+            gamedisplay.blit(baleiaImg, (posicaoImgX,posicaoImgY) )
         posicaoImgY = posicaoImgY + imgSpeed
+        
 
         if zooPosicaoX > larguraTela - zooLargura:
             zooPosicaoX = larguraTela-zooLargura
@@ -108,8 +117,9 @@ def game_loop():
 
         pygame.display.update()
         clock.tick(60)
+        
         if posicaoImgY > alturaTela:
-            
+            sorteio = 0
             posicaoImgY = 0 - alturaImg
             posicaoImgX = random.randrange(0,larguraTela)
 
