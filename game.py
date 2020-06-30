@@ -23,13 +23,30 @@ porcoImg = pygame.image.load('imgs/porco.png')
 def mostraZoo( x, y):
     gamedisplay.blit(zoologoImg, (x,y) )
 
+zooPosicaoX = 350
+zooPosicaoY = 450
+movimentoX = 0
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-    mostraZoo(400,400)
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                movimentoX = -5
+            elif event.key == pygame.K_RIGHT:
+                movimentoX = 5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                movimentoX = 0
+
+    zooPosicaoX = zooPosicaoX + movimentoX
+
+    gamedisplay.fill(white)
+    mostraZoo(zooPosicaoX,zooPosicaoY)
     pygame.display.update()
     clock.tick(60)
 
