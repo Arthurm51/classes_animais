@@ -1,10 +1,7 @@
 import pygame
 import time
 import random
-from functions import sorteioImagem, sorteioClasse, mostraZoo, text_objects
-
-
-
+from functions import sorteioImagem, sorteioClasse, mostraZoo, text_objects, perdeu
 pygame.init()
 pedido = 0
 larguraTela = 800
@@ -13,12 +10,12 @@ gamedisplay = pygame.display.set_mode((larguraTela,alturaTela))
 clock = pygame.time.Clock()
 black = (0,0,0)
 white = (255,255,255)
+
 aveImg = pygame.image.load('imgs/ave.png')
 peixepImg = pygame.image.load('imgs/peixep.png')
 mamiferoImg = pygame.image.load('imgs/mamifero.png')
 anfibioImg = pygame.image.load('imgs/anfibio.png')
 reptilImg = pygame.image.load('imgs/reptil.png')
-
 baleiaImg = pygame.image.load('imgs/baleia.png')
 cachorroImg = pygame.image.load('imgs/cachorro.png')
 cobraImg = pygame.image.load('imgs/cobra.png')
@@ -35,24 +32,10 @@ girafaImg = pygame.image.load('imgs/girafa.png')
 leaoImg = pygame.image.load('imgs/leao.png')
 elefanteImg = pygame.image.load('imgs/elefante.png')
 sapoImg = pygame.image.load('imgs/sapo.png')
-
 background = pygame.image.load('imgs/zoo2.png')
 gameicon = pygame.image.load('imgs/icon.png')
 pygame.display.set_icon(gameicon)
 pygame.display.set_caption('Mamiferos')
-
-
-
-
-
-    
-
-
-
-
-
-    
-
 
 def message_display(text):
     import pygame
@@ -71,17 +54,11 @@ def message_display(text):
     time.sleep(2)
     game_loop()
 
-
-def perdeu():
-    import pygame
-    message_display("Você perdeu!")
-
 def placar(contador):
     import pygame
     font = pygame.font.SysFont(None,40)
     text = font.render("Pontuação: "+str(contador), True, black)
     gamedisplay.blit(text, (10, 30))
-
 
 def game_loop():
     arquivo = open("jogadores.txt", "a")
@@ -104,14 +81,11 @@ def game_loop():
     posicaoImgX = random.randrange(0, ateimg)
     contador = 0
     
-    while True:
-        
-        
+    while True:    
         if sorteio == 0:
             img = sorteioImagem()
             imgClasse = sorteioClasse(zooPosicaoX, zooPosicaoY)
             sorteio = 1
-        
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -129,7 +103,6 @@ def game_loop():
                     movimentoX = 0
 
         zooPosicaoX = zooPosicaoX + movimentoX
-
         gamedisplay.fill(white)
         gamedisplay.blit(background, (0, 0))
         
@@ -179,10 +152,8 @@ def game_loop():
         elif img == 15:
             gamedisplay.blit(sapoImg, (posicaoImgX,posicaoImgY) )
         
-
         posicaoImgY = posicaoImgY + imgSpeed
         
-
         if zooPosicaoX > larguraTela - zooLargura:
             zooPosicaoX = larguraTela-zooLargura
         elif zooPosicaoX < 0:
@@ -246,8 +217,6 @@ def game_loop():
                         arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 
-                    
-                    
             elif posicaoImgY > alturaTela:
                 if imgClasse == 2:
                     if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
@@ -304,9 +273,6 @@ def game_loop():
                         posicaoImgX = random.randrange(0,ateimg)
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
-
-
-            
 
         pygame.display.update()
         clock.tick(60)
