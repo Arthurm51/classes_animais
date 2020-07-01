@@ -18,6 +18,16 @@ galinhaImg = pygame.image.load('imgs/galinha.png')
 gatoImg = pygame.image.load('imgs/gato.png')
 lagartoImg = pygame.image.load('imgs/lagarto.png')
 porcoImg = pygame.image.load('imgs/porco.png')
+macacoImg = pygame.image.load('imgs/macaco.png')
+avestruzImg = pygame.image.load('imgs/avestruz.png')
+jacareImg = pygame.image.load('imgs/jacare.png')
+patoImg = pygame.image.load('imgs/pato.png')
+peixeImg = pygame.image.load('imgs/peixe.png')
+tartarugaImg = pygame.image.load('imgs/tartaruga.png')
+girafaImg = pygame.image.load('imgs/girafa.png')
+leaoImg = pygame.image.load('imgs/leao.png')
+elefanteImg = pygame.image.load('imgs/elefante.png')
+
 background = pygame.image.load('imgs/zoo2.png')
 gameicon = pygame.image.load('imgs/icon.png')
 pygame.display.set_icon(gameicon)
@@ -28,7 +38,7 @@ def mostraZoo( x, y):
 
     
 def sorteioImagem():
-    img = random.randrange(0, 7)
+    img = random.randrange(0, 16)
     return img
 
 
@@ -52,7 +62,7 @@ def perdeu():
 
 def placar(contador):
     font = pygame.font.SysFont(None,40)
-    text = font.render("Pontuação: "+str(contador), True, white)
+    text = font.render("Pontuação: "+str(contador), True, black)
     gamedisplay.blit(text, (10, 30))
 
 def game_loop():
@@ -113,6 +123,25 @@ def game_loop():
             gamedisplay.blit(cachorroImg, (posicaoImgX,posicaoImgY) )
         elif img == 6:
             gamedisplay.blit(baleiaImg, (posicaoImgX,posicaoImgY) )
+        elif img == 7:
+            gamedisplay.blit(macacoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 8:
+            gamedisplay.blit(avestruzImg, (posicaoImgX,posicaoImgY) )
+        elif img == 9:
+            gamedisplay.blit(jacareImg, (posicaoImgX,posicaoImgY) )
+        elif img == 10:
+            gamedisplay.blit(tartarugaImg, (posicaoImgX,posicaoImgY) )
+        elif img == 11:
+            gamedisplay.blit(patoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 12:
+            gamedisplay.blit(peixeImg, (posicaoImgX,posicaoImgY) )
+        elif img == 13:
+            gamedisplay.blit(girafaImg, (posicaoImgX,posicaoImgY) )
+        elif img == 14:
+            gamedisplay.blit(leaoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 15:
+            gamedisplay.blit(elefanteImg, (posicaoImgX,posicaoImgY) )
+
         posicaoImgY = posicaoImgY + imgSpeed
         
 
@@ -123,20 +152,27 @@ def game_loop():
 
         if zooPosicaoY + 50 < posicaoImgY + alturaImg:
             if zooPosicaoX < posicaoImgX and zooPosicaoX + zooLargura > posicaoImgX or posicaoImgX+larguraImg > zooPosicaoX and posicaoImgX+larguraImg < zooPosicaoX + zooLargura:
-                if img == 1 or img == 4:
+                if img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 11 or img == 12:
                     perdeu()
-                else:
-                    pass
-            else:
-                pass
+                elif img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 15:
+                    contador = contador + 1
+                    posicaoImgY = 0 - alturaImg
+                    posicaoImgX = random.randrange(0,ateimg)
+                    sorteio = 0
+                    
+                    
+            elif posicaoImgY > alturaTela:
+                if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 15:
+                    perdeu()
+                elif img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 11 or img == 12:
+                    contador = contador + 1
+                    sorteio = 0
+                    posicaoImgY = 0 - alturaImg
+                    posicaoImgX = random.randrange(0,ateimg)
+            
+            
 
-        if posicaoImgY > alturaTela:
-            if img == 0 or img == 2 or img == 3 or img == 5 or img == 6:
-                perdeu()
-            else:
-                sorteio = 0
-                posicaoImgY = 0 - alturaImg
-                posicaoImgX = random.randrange(0,ateimg)
+        
                 
             
 
