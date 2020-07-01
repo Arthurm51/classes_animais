@@ -1,6 +1,9 @@
 import pygame
 import time
 import random
+arquivo = open("jogadores.txt", "a")
+nome = input("Digite aqui seu nome: ")
+email = input("Digite aqui seu e-mail: ")
 
 pygame.init()
 
@@ -194,6 +197,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 elif imgClasse == 0:
                     if img == 3 or img == 8:
@@ -204,6 +208,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 elif imgClasse == 1:
                     if img == 12:
@@ -214,6 +219,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 elif imgClasse == 3:
                     if img == 15:
@@ -224,6 +230,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 elif imgClasse == 4:
                     if img == 1 or img == 4 or img == 9 or img == 10:
@@ -234,6 +241,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                 
                     
@@ -241,6 +249,7 @@ def game_loop():
             elif posicaoImgY > alturaTela:
                 if imgClasse == 2:
                     if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                     else:
                         contador = contador + 1
@@ -251,6 +260,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 0:
                     if img == 3 or img == 8:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                     else:
                         contador = contador + 1
@@ -261,6 +271,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 1:
                     if img == 12:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                     else:
                         contador = contador + 1
@@ -271,6 +282,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 3:
                     if img == 15:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                     else:
                         contador = contador + 1
@@ -281,6 +293,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 4:
                     if img == 1 or img == 4 or img == 9 or img == 10:
+                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
                         perdeu()
                     else:
                         contador = contador + 1
