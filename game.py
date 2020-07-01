@@ -50,8 +50,12 @@ def message_display(text):
 def perdeu():
     message_display("Você perdeu!")
 
+def placar(contador):
+    font = pygame.font.SysFont(None,40)
+    text = font.render("Pontuação: "+str(contador), True, white)
+    gamedisplay.blit(text, (10, 30))
+
 def game_loop():
-    
     zooPosicaoX = larguraTela /2 - 50
     zooPosicaoY = alturaTela - 150
     movimentoX = 0
@@ -64,6 +68,8 @@ def game_loop():
     sorteio = 0
     ateimg = larguraTela - larguraImg
     posicaoImgX = random.randrange(0, ateimg)
+    contador = 0
+
     while True:
         
         
@@ -91,6 +97,7 @@ def game_loop():
         gamedisplay.fill(white)
         gamedisplay.blit(background, (0, 0))
         mostraZoo(zooPosicaoX,zooPosicaoY)
+        placar(contador)
         
         if img == 0:
             gamedisplay.blit(porcoImg, (posicaoImgX,posicaoImgY) )
@@ -114,6 +121,15 @@ def game_loop():
         elif zooPosicaoX < 0:
                 zooPosicaoX = 0
 
+        if zooPosicaoY + 50 < posicaoImgY + alturaImg:
+            if zooPosicaoX < posicaoImgX and zooPosicaoX + zooLargura > posicaoImgX or posicaoImgX+larguraImg > zooPosicaoX and posicaoImgX+larguraImg < zooPosicaoX + zooLargura:
+                if img == 1 or img == 4:
+                    perdeu()
+                else:
+                    pass
+            else:
+                pass
+
         if posicaoImgY > alturaTela:
             if img == 0 or img == 2 or img == 3 or img == 5 or img == 6:
                 perdeu()
@@ -121,6 +137,7 @@ def game_loop():
                 sorteio = 0
                 posicaoImgY = 0 - alturaImg
                 posicaoImgX = random.randrange(0,ateimg)
+                
             
 
         pygame.display.update()
