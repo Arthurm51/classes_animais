@@ -10,7 +10,12 @@ gamedisplay = pygame.display.set_mode((larguraTela,alturaTela))
 clock = pygame.time.Clock()
 black = (0,0,0)
 white = (255,255,255)
-zoologoImg = pygame.image.load('imgs/zoologo.png')
+aveImg = pygame.image.load('imgs/ave.png')
+peixepImg = pygame.image.load('imgs/peixep.png')
+mamiferoImg = pygame.image.load('imgs/mamifero.png')
+anfibioImg = pygame.image.load('imgs/anfibio.png')
+reptilImg = pygame.image.load('imgs/reptil.png')
+
 baleiaImg = pygame.image.load('imgs/baleia.png')
 cachorroImg = pygame.image.load('imgs/cachorro.png')
 cobraImg = pygame.image.load('imgs/cobra.png')
@@ -26,21 +31,28 @@ tartarugaImg = pygame.image.load('imgs/tartaruga.png')
 girafaImg = pygame.image.load('imgs/girafa.png')
 leaoImg = pygame.image.load('imgs/leao.png')
 elefanteImg = pygame.image.load('imgs/elefante.png')
+sapoImg = pygame.image.load('imgs/sapo.png')
 
 background = pygame.image.load('imgs/zoo2.png')
 gameicon = pygame.image.load('imgs/icon.png')
 pygame.display.set_icon(gameicon)
 pygame.display.set_caption('Mamiferos')
 
-def mostraZoo( x, y):
-    gamedisplay.blit(zoologoImg, (x,y) )
+
 
     
 def sorteioImagem():
     img = random.randrange(0, 16)
     return img
 
+def sorteioClasse(x, y):
+    imgClasse = random.randrange(0, 5)
+    return imgClasse
 
+def mostraZoo( x, y):
+    imgClasse = sorteioClasse(x, y)
+    return imgClasse
+    
 
 
 def text_objects(text,font):
@@ -66,14 +78,14 @@ def placar(contador):
 
 def game_loop():
     zooPosicaoX = larguraTela /2 - 50
-    zooPosicaoY = alturaTela - 150
+    zooPosicaoY = alturaTela - 50
     movimentoX = 0
     zooLargura = 150
     zooAltura = 150
     posicaoImgY = -100
     larguraImg = 120
     alturaImg = 80
-    imgSpeed = 7
+    imgSpeed = 5
     sorteio = 0
     ateimg = larguraTela - larguraImg
     posicaoImgX = random.randrange(0, ateimg)
@@ -84,7 +96,9 @@ def game_loop():
         
         if sorteio == 0:
             img = sorteioImagem()
+            imgClasse = sorteioClasse(zooPosicaoX, zooPosicaoY)
             sorteio = 1
+        
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -105,6 +119,17 @@ def game_loop():
 
         gamedisplay.fill(white)
         gamedisplay.blit(background, (0, 0))
+        
+        if imgClasse == 0:
+            gamedisplay.blit(aveImg, (zooPosicaoX,zooPosicaoY) )
+        elif imgClasse == 1:
+            gamedisplay.blit(peixepImg, (zooPosicaoX,zooPosicaoY) )
+        elif imgClasse == 2:
+            gamedisplay.blit(mamiferoImg, (zooPosicaoX,zooPosicaoY) )
+        elif imgClasse == 3:
+            gamedisplay.blit(anfibioImg, (zooPosicaoX,zooPosicaoY) )
+        elif imgClasse == 4:
+            gamedisplay.blit(reptilImg, (zooPosicaoX,zooPosicaoY) )
         mostraZoo(zooPosicaoX,zooPosicaoY)
         placar(contador)
         
@@ -138,6 +163,8 @@ def game_loop():
             gamedisplay.blit(girafaImg, (posicaoImgX,posicaoImgY) )
         elif img == 14:
             gamedisplay.blit(leaoImg, (posicaoImgX,posicaoImgY) )
+        elif img == 15:
+            gamedisplay.blit(sapoImg, (posicaoImgX,posicaoImgY) )
         
 
         posicaoImgY = posicaoImgY + imgSpeed
@@ -150,23 +177,113 @@ def game_loop():
 
         if zooPosicaoY + 50 < posicaoImgY + alturaImg:
             if zooPosicaoX < posicaoImgX and zooPosicaoX + zooLargura > posicaoImgX or posicaoImgX+larguraImg > zooPosicaoX and posicaoImgX+larguraImg < zooPosicaoX + zooLargura:
-                if img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 12:
-                    perdeu()
-                elif img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
-                    contador = contador + 1
-                    posicaoImgY = 0 - alturaImg
-                    posicaoImgX = random.randrange(0,ateimg)
-                    sorteio = 0
+                if imgClasse == 2:
+                    if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
+                        contador = contador + 1
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        sorteio = 0
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                    else:
+                        perdeu()
+                elif imgClasse == 0:
+                    if img == 3 or img == 8:
+                        contador = contador + 1
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        sorteio = 0
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                    else:
+                        perdeu()
+                elif imgClasse == 1:
+                    if img == 12:
+                        contador = contador + 1
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        sorteio = 0
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                    else:
+                        perdeu()
+                elif imgClasse == 3:
+                    if img == 15:
+                        contador = contador + 1
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        sorteio = 0
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                    else:
+                        perdeu()
+                elif imgClasse == 4:
+                    if img == 1 or img == 4 or img == 9 or img == 10:
+                        contador = contador + 1
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        sorteio = 0
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                    else:
+                        perdeu()
+                
                     
                     
             elif posicaoImgY > alturaTela:
-                if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
-                    perdeu()
-                elif img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 12:
-                    contador = contador + 1
-                    sorteio = 0
-                    posicaoImgY = 0 - alturaImg
-                    posicaoImgX = random.randrange(0,ateimg)  
+                if imgClasse == 2:
+                    if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
+                        perdeu()
+                    else:
+                        contador = contador + 1
+                        sorteio = 0
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                elif imgClasse == 0:
+                    if img == 3 or img == 8:
+                        perdeu()
+                    else:
+                        contador = contador + 1
+                        sorteio = 0
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                elif imgClasse == 1:
+                    if img == 12:
+                        perdeu()
+                    else:
+                        contador = contador + 1
+                        sorteio = 0
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                elif imgClasse == 3:
+                    if img == 15:
+                        perdeu()
+                    else:
+                        contador = contador + 1
+                        sorteio = 0
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+                elif imgClasse == 4:
+                    if img == 1 or img == 4 or img == 9 or img == 10:
+                        perdeu()
+                    else:
+                        contador = contador + 1
+                        sorteio = 0
+                        posicaoImgY = 0 - alturaImg
+                        posicaoImgX = random.randrange(0,ateimg)
+                        if imgSpeed < 10:
+                            imgSpeed = imgSpeed + 1
+
+
+            
 
         pygame.display.update()
         clock.tick(60)
