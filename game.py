@@ -1,12 +1,12 @@
 import pygame
 import time
 import random
-arquivo = open("jogadores.txt", "a")
-nome = input("Digite aqui seu nome: ")
-email = input("Digite aqui seu e-mail: ")
+from functions import sorteioImagem, sorteioClasse, mostraZoo, text_objects
+
+
 
 pygame.init()
-
+pedido = 0
 larguraTela = 800
 alturaTela = 600
 gamedisplay = pygame.display.set_mode((larguraTela,alturaTela))
@@ -43,29 +43,26 @@ pygame.display.set_caption('Mamiferos')
 
 
 
-    
-def sorteioImagem():
-    import random
-    img = random.randrange(0, 16)
-    return img
 
-def sorteioClasse(x, y):
-    import random
-    imgClasse = random.randrange(0, 5)
-    return imgClasse
 
-def mostraZoo( x, y):
-    imgClasse = sorteioClasse(x, y)
-    return imgClasse
     
 
-def text_objects(text,font):
-    import pygame
-    textSurface = font.render(text, True, white)
-    return textSurface, textSurface.get_rect()
+
+
+
+
+    
+
 
 def message_display(text):
     import pygame
+    import time
+    from game import game_loop
+    larguraTela = 800
+    alturaTela = 600
+    gamedisplay = pygame.display.set_mode((larguraTela,alturaTela))
+    background = pygame.image.load('imgs/zoo2.png')
+    gamedisplay.blit(background, (0, 0))
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects(text,largeText)
     TextRect.center = ((larguraTela/2, alturaTela/2))
@@ -73,6 +70,7 @@ def message_display(text):
     pygame.display.update()
     time.sleep(2)
     game_loop()
+
 
 def perdeu():
     import pygame
@@ -84,7 +82,11 @@ def placar(contador):
     text = font.render("Pontuação: "+str(contador), True, black)
     gamedisplay.blit(text, (10, 30))
 
+
 def game_loop():
+    arquivo = open("jogadores.txt", "a")
+    nome = input("Digite aqui seu nome: ")
+    email = input("Digite aqui seu e-mail: ")
     import pygame
     import time
     import random
@@ -101,7 +103,7 @@ def game_loop():
     ateimg = larguraTela - larguraImg
     posicaoImgX = random.randrange(0, ateimg)
     contador = 0
-
+    
     while True:
         
         
