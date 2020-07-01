@@ -166,19 +166,9 @@ def game_loop():
                     contador = contador + 1
                     sorteio = 0
                     posicaoImgY = 0 - alturaImg
-                    posicaoImgX = random.randrange(0,ateimg)
-            
-            
-
-        
-                
-            
+                    posicaoImgX = random.randrange(0,ateimg)  
 
         pygame.display.update()
         clock.tick(60)
         
-        
-
 game_loop()
-
-
