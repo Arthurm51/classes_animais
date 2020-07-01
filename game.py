@@ -42,10 +42,12 @@ pygame.display.set_caption('Mamiferos')
 
     
 def sorteioImagem():
+    import random
     img = random.randrange(0, 16)
     return img
 
 def sorteioClasse(x, y):
+    import random
     imgClasse = random.randrange(0, 5)
     return imgClasse
 
@@ -54,12 +56,13 @@ def mostraZoo( x, y):
     return imgClasse
     
 
-
 def text_objects(text,font):
+    import pygame
     textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
 
 def message_display(text):
+    import pygame
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects(text,largeText)
     TextRect.center = ((larguraTela/2, alturaTela/2))
@@ -69,14 +72,19 @@ def message_display(text):
     game_loop()
 
 def perdeu():
+    import pygame
     message_display("Você perdeu!")
 
 def placar(contador):
+    import pygame
     font = pygame.font.SysFont(None,40)
     text = font.render("Pontuação: "+str(contador), True, black)
     gamedisplay.blit(text, (10, 30))
 
 def game_loop():
+    import pygame
+    import time
+    import random
     zooPosicaoX = larguraTela /2 - 50
     zooPosicaoY = alturaTela - 50
     movimentoX = 0
@@ -107,9 +115,9 @@ def game_loop():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    movimentoX = -5
+                    movimentoX = -8
                 elif event.key == pygame.K_RIGHT:
-                    movimentoX = 5
+                    movimentoX = 8
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -183,7 +191,7 @@ def game_loop():
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
                         sorteio = 0
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
                         perdeu()
@@ -193,7 +201,7 @@ def game_loop():
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
                         sorteio = 0
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
                         perdeu()
@@ -203,7 +211,7 @@ def game_loop():
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
                         sorteio = 0
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
                         perdeu()
@@ -213,7 +221,7 @@ def game_loop():
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
                         sorteio = 0
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
                         perdeu()
@@ -223,7 +231,7 @@ def game_loop():
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
                         sorteio = 0
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
                         perdeu()
@@ -239,7 +247,7 @@ def game_loop():
                         sorteio = 0
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 0:
                     if img == 3 or img == 8:
@@ -249,7 +257,7 @@ def game_loop():
                         sorteio = 0
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 1:
                     if img == 12:
@@ -259,7 +267,7 @@ def game_loop():
                         sorteio = 0
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 3:
                     if img == 15:
@@ -269,7 +277,7 @@ def game_loop():
                         sorteio = 0
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 4:
                     if img == 1 or img == 4 or img == 9 or img == 10:
@@ -279,7 +287,7 @@ def game_loop():
                         sorteio = 0
                         posicaoImgY = 0 - alturaImg
                         posicaoImgX = random.randrange(0,ateimg)
-                        if imgSpeed < 10:
+                        if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
 
 
