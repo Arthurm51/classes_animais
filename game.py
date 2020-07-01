@@ -21,7 +21,6 @@ porcoImg = pygame.image.load('imgs/porco.png')
 macacoImg = pygame.image.load('imgs/macaco.png')
 avestruzImg = pygame.image.load('imgs/avestruz.png')
 jacareImg = pygame.image.load('imgs/jacare.png')
-patoImg = pygame.image.load('imgs/pato.png')
 peixeImg = pygame.image.load('imgs/peixe.png')
 tartarugaImg = pygame.image.load('imgs/tartaruga.png')
 girafaImg = pygame.image.load('imgs/girafa.png')
@@ -132,15 +131,14 @@ def game_loop():
         elif img == 10:
             gamedisplay.blit(tartarugaImg, (posicaoImgX,posicaoImgY) )
         elif img == 11:
-            gamedisplay.blit(patoImg, (posicaoImgX,posicaoImgY) )
+            gamedisplay.blit(elefanteImg, (posicaoImgX,posicaoImgY) )
         elif img == 12:
             gamedisplay.blit(peixeImg, (posicaoImgX,posicaoImgY) )
         elif img == 13:
             gamedisplay.blit(girafaImg, (posicaoImgX,posicaoImgY) )
         elif img == 14:
             gamedisplay.blit(leaoImg, (posicaoImgX,posicaoImgY) )
-        elif img == 15:
-            gamedisplay.blit(elefanteImg, (posicaoImgX,posicaoImgY) )
+        
 
         posicaoImgY = posicaoImgY + imgSpeed
         
@@ -152,9 +150,9 @@ def game_loop():
 
         if zooPosicaoY + 50 < posicaoImgY + alturaImg:
             if zooPosicaoX < posicaoImgX and zooPosicaoX + zooLargura > posicaoImgX or posicaoImgX+larguraImg > zooPosicaoX and posicaoImgX+larguraImg < zooPosicaoX + zooLargura:
-                if img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 11 or img == 12:
+                if img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 12:
                     perdeu()
-                elif img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 15:
+                elif img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
                     contador = contador + 1
                     posicaoImgY = 0 - alturaImg
                     posicaoImgX = random.randrange(0,ateimg)
@@ -162,9 +160,9 @@ def game_loop():
                     
                     
             elif posicaoImgY > alturaTela:
-                if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 15:
+                if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
                     perdeu()
-                elif img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 11 or img == 12:
+                elif img == 1 or img == 3 or img == 4 or img == 8 or img == 9 or img == 10 or img == 12:
                     contador = contador + 1
                     sorteio = 0
                     posicaoImgY = 0 - alturaImg
