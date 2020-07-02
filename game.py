@@ -75,6 +75,8 @@ def game_loop():
     import pygame
     import time
     import random
+    pygame.mixer.music.load('imgs/fazendinha.mp3')
+    pygame.mixer.music.play(-1)
     zooPosicaoX = larguraTela /2 - 50
     zooPosicaoY = alturaTela - 50
     movimentoX = 0
