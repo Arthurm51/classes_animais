@@ -1,7 +1,7 @@
 import pygame
 import time
 import random
-from functions import sorteioImagem, sorteioClasse, mostraZoo, text_objects, perdeu
+from functions import sorteioImagem, sorteioClasse, mostraZoo, text_objects
 pygame.init()
 pedido = 0
 larguraTela = 800
@@ -10,6 +10,7 @@ gamedisplay = pygame.display.set_mode((larguraTela,alturaTela))
 clock = pygame.time.Clock()
 black = (0,0,0)
 white = (255,255,255)
+
 
 aveImg = pygame.image.load('imgs/ave.png')
 peixepImg = pygame.image.load('imgs/peixep.png')
@@ -36,7 +37,12 @@ background = pygame.image.load('imgs/zoo2.png')
 gameicon = pygame.image.load('imgs/icon.png')
 pygame.display.set_icon(gameicon)
 pygame.display.set_caption('Mamiferos')
-
+'''
+def message_display("Você perdeu!"):
+    import pygame
+    from game import message_display
+    message_display("Você perdeu!")
+'''
 def message_display(text):
     import pygame
     import time
@@ -51,6 +57,10 @@ def message_display(text):
     TextRect.center = ((larguraTela/2, alturaTela/2))
     gamedisplay.blit(TextSurf, TextRect)
     pygame.display.update()
+    arquivo = open("jogadores.txt", "a")
+    nome = input("Digite aqui seu nome: ")
+    email = input("Digite aqui seu e-mail: ")
+    arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ "\n")
     time.sleep(2)
     game_loop()
 
@@ -61,9 +71,7 @@ def placar(contador):
     gamedisplay.blit(text, (10, 30))
 
 def game_loop():
-    arquivo = open("jogadores.txt", "a")
-    nome = input("Digite aqui seu nome: ")
-    email = input("Digite aqui seu e-mail: ")
+    
     import pygame
     import time
     import random
@@ -170,8 +178,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                 elif imgClasse == 0:
                     if img == 3 or img == 8:
                         contador = contador + 1
@@ -181,8 +188,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                 elif imgClasse == 1:
                     if img == 12:
                         contador = contador + 1
@@ -192,8 +198,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                 elif imgClasse == 3:
                     if img == 15:
                         contador = contador + 1
@@ -203,8 +208,7 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                 elif imgClasse == 4:
                     if img == 1 or img == 4 or img == 9 or img == 10:
                         contador = contador + 1
@@ -214,14 +218,11 @@ def game_loop():
                         if imgSpeed < 15:
                             imgSpeed = imgSpeed + 1
                     else:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
-                
+                        message_display("Você perdeu!")
             elif posicaoImgY > alturaTela:
                 if imgClasse == 2:
                     if img == 0 or img == 2 or img == 5 or img == 6 or img == 7 or img == 13 or img == 14 or img == 11:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                     else:
                         contador = contador + 1
                         sorteio = 0
@@ -231,8 +232,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 0:
                     if img == 3 or img == 8:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                     else:
                         contador = contador + 1
                         sorteio = 0
@@ -242,8 +242,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 1:
                     if img == 12:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                     else:
                         contador = contador + 1
                         sorteio = 0
@@ -253,8 +252,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 3:
                     if img == 15:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                     else:
                         contador = contador + 1
                         sorteio = 0
@@ -264,8 +262,7 @@ def game_loop():
                             imgSpeed = imgSpeed + 1
                 elif imgClasse == 4:
                     if img == 1 or img == 4 or img == 9 or img == 10:
-                        arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ str(contador)+ "\n")
-                        perdeu()
+                        message_display("Você perdeu!")
                     else:
                         contador = contador + 1
                         sorteio = 0

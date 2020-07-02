@@ -18,8 +18,3 @@ def text_objects(text,font):
     textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
 
-def perdeu():
-    import pygame
-    from game import message_display
-    message_display("Você perdeu!")
-
