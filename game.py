@@ -1,3 +1,7 @@
+arquivo = open("jogadores.txt", "a")
+nome = input("Digite aqui seu nome (apenas a primeira escolha é a que importa): ")
+email = input("Digite aqui seu e-mail (apenas a primeira escolha é a que importa): ")
+arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\n")
 import pygame
 import time
 import random
@@ -37,12 +41,7 @@ background = pygame.image.load('imgs/zoo2.png')
 gameicon = pygame.image.load('imgs/icon.png')
 pygame.display.set_icon(gameicon)
 pygame.display.set_caption('Mamiferos')
-'''
-def message_display("Você perdeu!"):
-    import pygame
-    from game import message_display
-    message_display("Você perdeu!")
-'''
+
 def message_display(text):
     import pygame
     import time
@@ -57,10 +56,6 @@ def message_display(text):
     TextRect.center = ((larguraTela/2, alturaTela/2))
     gamedisplay.blit(TextSurf, TextRect)
     pygame.display.update()
-    arquivo = open("jogadores.txt", "a")
-    nome = input("Digite aqui seu nome: ")
-    email = input("Digite aqui seu e-mail: ")
-    arquivo.write("\nNome: "+ nome+ "\nE-mail: "+ email+ "\nPontuação: "+ "\n")
     time.sleep(2)
     game_loop()
 
@@ -275,5 +270,6 @@ def game_loop():
 
         pygame.display.update()
         clock.tick(60)
-        
-game_loop()
+
+
+message_display(" ")
